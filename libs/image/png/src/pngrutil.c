@@ -278,13 +278,13 @@ png_decompress_chunk(png_structp png_ptr, int comp_type,
          char umsg[50];
 
          if (ret == Z_BUF_ERROR)
-            sprintf(umsg,"Buffer error in compressed datastream in %s chunk",
+            snprintf(umsg, sizeof(umsg), "Buffer error in compressed datastream in %s chunk",
                 png_ptr->chunk_name);
          else if (ret == Z_DATA_ERROR)
-            sprintf(umsg,"Data error in compressed datastream in %s chunk",
+            snprintf(umsg, sizeof(umsg), "Data error in compressed datastream in %s chunk",
                 png_ptr->chunk_name);
          else
-            sprintf(umsg,"Incomplete compressed datastream in %s chunk",
+            snprintf(umsg, sizeof(umsg), "Incomplete compressed datastream in %s chunk",
                 png_ptr->chunk_name);
          png_warning(png_ptr, umsg);
 #else
@@ -317,7 +317,7 @@ png_decompress_chunk(png_structp png_ptr, int comp_type,
 #if !defined(PNG_NO_STDIO) && !defined(_WIN32_WCE)
       char umsg[50];
 
-      sprintf(umsg, "Unknown zTXt compression type %d", comp_type);
+      snprintf(umsg, sizeof(umsg), "Unknown zTXt compression type %d", comp_type);
       png_warning(png_ptr, umsg);
 #else
       png_warning(png_ptr, "Unknown zTXt compression type");

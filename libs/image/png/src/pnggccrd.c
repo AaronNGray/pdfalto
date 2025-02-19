@@ -5097,9 +5097,9 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep
    png_debug(1, "in png_read_filter_row (pnggccrd.c)\n");
    switch (filter)
    {
-      case 0: sprintf(filnm, "none");
+      case 0: snprintf(filnm, sizeof(filnm), "none");
          break;
-      case 1: sprintf(filnm, "sub-%s",
+      case 1: snprintf(filnm, sizeof(filnm), "sub-%s",
 #if defined(PNG_ASSEMBLER_CODE_SUPPORTED) && defined(PNG_THREAD_UNSAFE_OK)
 #if !defined(PNG_1_0_X)
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_SUB)? "MMX" : 
@@ -5107,7 +5107,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep
 #endif
 "x86");
          break;
-      case 2: sprintf(filnm, "up-%s",
+      case 2: snprintf(filnm, sizeof(filnm), "up-%s",
 #ifdef PNG_ASSEMBLER_CODE_SUPPORTED
 #if !defined(PNG_1_0_X)
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_UP)? "MMX" :
@@ -5115,7 +5115,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep
 #endif
  "x86");
          break;
-      case 3: sprintf(filnm, "avg-%s",
+      case 3: snprintf(filnm, sizeof(filnm), "avg-%s",
 #if defined(PNG_ASSEMBLER_CODE_SUPPORTED) && defined(PNG_THREAD_UNSAFE_OK)
 #if !defined(PNG_1_0_X)
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_AVG)? "MMX" :
@@ -5123,7 +5123,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep
 #endif
  "x86");
          break;
-      case 4: sprintf(filnm, "Paeth-%s",
+      case 4: snprintf(filnm, sizeof(filnm), "Paeth-%s",
 #if defined(PNG_ASSEMBLER_CODE_SUPPORTED) && defined(PNG_THREAD_UNSAFE_OK)
 #if !defined(PNG_1_0_X)
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_PAETH)? "MMX":
@@ -5131,7 +5131,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep
 #endif
 "x86");
          break;
-      default: sprintf(filnm, "unknw");
+      default: snprintf(filnm, sizeof(filnm), "unknw");
          break;
    }
    png_debug2(0, "row_number=%5ld, %5s, ", png_ptr->row_number, filnm);

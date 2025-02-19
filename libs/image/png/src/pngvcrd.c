@@ -3692,32 +3692,32 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep
    png_debug(1, "in png_read_filter_row\n");
    switch (filter)
    {
-      case 0: sprintf(filnm, "none");
+      case 0: snprintf(filnm, sizeof(filnm), "none");
          break;
 #if !defined(PNG_1_0_X)
-      case 1: sprintf(filnm, "sub-%s",
+      case 1: snprintf(filnm, sizeof(filnm), "sub-%s",
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_SUB)? "MMX" : "x86");
          break;
-      case 2: sprintf(filnm, "up-%s",
+      case 2: snprintf(filnm, sizeof(filnm), "up-%s",
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_UP)? "MMX" : "x86");
          break;
-      case 3: sprintf(filnm, "avg-%s",
+      case 3: snprintf(filnm, sizeof(filnm), "avg-%s",
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_AVG)? "MMX" : "x86");
          break;
-      case 4: sprintf(filnm, "Paeth-%s",
+      case 4: snprintf(filnm, sizeof(filnm), "Paeth-%s",
         (png_ptr->asm_flags & PNG_ASM_FLAG_MMX_READ_FILTER_PAETH)? "MMX":"x86");
          break;
 #else
-      case 1: sprintf(filnm, "sub");
+      case 1: snprintf(filnm, sizeof(filnm), "sub");
          break;
-      case 2: sprintf(filnm, "up");
+      case 2: snprintf(filnm, sizeof(filnm), "up");
          break;
-      case 3: sprintf(filnm, "avg");
+      case 3: snprintf(filnm, sizeof(filnm), "avg");
          break;
-      case 4: sprintf(filnm, "Paeth");
+      case 4: snprintf(filnm, sizeof(filnm), "Paeth");
          break;
 #endif
-      default: sprintf(filnm, "unknw");
+      default: snprintf(filnm, sizeof(filnm), "unknw");
          break;
    }
    png_debug2(0,"row=%5d, %s, ", png_ptr->row_number, filnm);
